@@ -1,4 +1,4 @@
-# vMix_mix2-_Audiofollow
+# vMix_mix2_and_later_Audiofollow
 ## 導入手順
   
 1.右上からダウンロード。  
