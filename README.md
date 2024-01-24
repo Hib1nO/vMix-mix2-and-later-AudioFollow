@@ -1,7 +1,7 @@
 # vMix_mix2_and_later_Audiofollow
 
 ## 注意事項
-・複数mix非対応  
+・複数mix指定非対応  
 
 ## 導入手順
   
