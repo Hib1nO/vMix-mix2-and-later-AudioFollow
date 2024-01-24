@@ -1,7 +1,7 @@
 # vMix_mix2_and_later_Audiofollow
 ## 導入手順
   
-1.右上からダウンロード。  
+1.右上のCodeからDownload Zipを選択。  
   
 2.vMixのSettingsを選択  
   
