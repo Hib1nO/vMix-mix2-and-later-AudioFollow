@@ -26,3 +26,13 @@
   例 : `dim input_keys() As String = {"ff58e63c-b799-42cd-9910-ece6cdcd8954", "98094b69-89c1-4d8c-86e7-73145f818a96", "9db82233-2966-490b-a0a9-c13c58b88212"}`  
     
 11.そのプロファイルのみに適応したい場合はLocal Script (This Presst Only)をチェック  
+
+12.Saveをクリック  
+
+13.Closeでウィンドウを閉じる  
+
+14.先ほど決めた名前の行を選択  
+
+15.緑色のStartをクリックしてScriptスタート  
+
+16.Scriptを停止する場合を先ほど決めた名前の行を選択してStopをクリックで停止  
