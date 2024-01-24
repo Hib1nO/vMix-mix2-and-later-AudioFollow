@@ -5,15 +5,15 @@
   
 2.ダウンロードしたZipファイルを解凍  
   
-3.vMixのSettingsを選択  
+3.vMixの**Settings**を選択  
   
-4.Scriptingのタブを選択  
+4.**Scripting**のタブを選択  
   
-5.Addをクリック  
+5.**Add**をクリック  
   
 6.出てきたウィンドウのName欄に好きなScriptの名前を入力  
   
-7.Importをクリック  
+7.**Import**をクリック  
   
 8.ダウンロードしてきたファイル「mix_Audio_Auto_Follow.txt」を選択  
   
@@ -25,14 +25,14 @@
   
   例 : `dim input_keys() As String = {"ff58e63c-b799-42cd-9910-ece6cdcd8954", "98094b69-89c1-4d8c-86e7-73145f818a96", "9db82233-2966-490b-a0a9-c13c58b88212"}`  
     
-11.そのプロファイルのみに適応したい場合はLocal Script (This Presst Only)をチェック  
+11.そのプロファイルのみに適応したい場合は**Local Script (This Presst Only)**をチェック  
 
-12.Saveをクリック  
+12.**Save**をクリック  
 
-13.Closeでウィンドウを閉じる  
+13.**Close**でウィンドウを閉じる  
 
 14.先ほど決めた名前の行を選択  
 
-15.緑色のStartをクリックしてScriptスタート  
+15.緑色の**Start**をクリックしてScriptスタート  
 
-16.Scriptを停止する場合を先ほど決めた名前の行を選択してStopをクリックで停止  
+16.Scriptを停止する場合を先ほど決めた名前の行を選択して**Stop**をクリックで停止  
