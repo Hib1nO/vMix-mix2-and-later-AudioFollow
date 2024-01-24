@@ -1,4 +1,8 @@
 # vMix_mix2_and_later_Audiofollow
+
+## 注意事項
+・複数mix非対応  
+
 ## 導入手順
   
 1.右上のCodeからDownload Zipを選択  
