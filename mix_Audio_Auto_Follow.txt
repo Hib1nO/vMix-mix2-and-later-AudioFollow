@@ -1,0 +1,91 @@
+'vMixのmixでAudio Followを実装するScriptです。
+'mix_numberにmixの番号
+'例：dim mix_number As String = "2"
+'input_keysにInputのKeyを入力してください。keyは""で囲んで次のkeyを入れる場合は,で区切ってください。
+'例：dim input_keys() As String = {"ff58e63c-b799-42cd-9910-ece6cdcd8954", "98094b69-89c1-4d8c-86e7-73145f818a96", "9db82233-2966-490b-a0a9-c13c58b88212"}
+
+
+
+dim VmixXML as new system.xml.xmldocument
+
+VmixXML.loadxml(API.XML)
+dim active_input As String = ""
+
+'--------------ここを入力---------------
+dim mix_number As String = ""
+dim input_keys() As String = {""}
+'--------------------------------------
+
+
+
+   dim input_numbers_1(input_keys.Length) As String
+
+   VmixXML.loadxml(API.XML)
+
+   For i As Integer = 0 To input_keys.Length - 1
+
+      input_numbers_1(i) = VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("number").Value
+
+   Next
+
+   active_input = VmixXML.selectSingleNode("/vmix/mix[@number="& mix_number &"]/active").InnerText
+
+   For i As Integer = 0 To input_keys.Length - 1
+
+      If input_numbers_1(i) = active_input
+         If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("muted").Value = "True"
+
+            API.Function("Audioon", input_keys(i))
+            'Console.WriteLine("Audio On : " & input_keys(i))
+
+         End If
+      Else
+         If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("muted").Value = "False"
+
+            API.Function("AudioOff", input_keys(i))
+            'Console.WriteLine("Audio Off : " & input_keys(i))
+
+         End If
+      End If
+
+   Next
+
+
+while(True)
+   dim input_numbers(input_keys.Length) As String
+
+   VmixXML.loadxml(API.XML)
+
+   For i As Integer = 0 To input_keys.Length - 1
+
+      input_numbers(i) = VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("number").Value
+
+   Next
+
+   active_input = VmixXML.selectSingleNode("/vmix/mix[@number="& mix_number &"]/active").InnerText
+
+   For i As Integer = 0 To input_keys.Length - 1
+
+      If input_numbers(i) = active_input
+         If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("muted").Value = "True"
+
+            API.Function("Audioon", input_keys(i))
+            'Console.WriteLine("Audio On : " & input_keys(i))
+
+         End If
+      Else
+         If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("muted").Value = "False"
+
+            API.Function("AudioOff", input_keys(i))
+            'Console.WriteLine("Audio Off : " & input_keys(i))
+
+         End If
+      End If
+
+   Next
+
+   'For i As Integer = 0 To input_keys.Length - 1
+   '   Console.WriteLine(input_numbers(i) & " : " & input_keys(i))
+   'Next
+
+End While
