@@ -1,6 +1,6 @@
 'vMixのmixでAudio Followを実装するScriptです。
-'final_output_keyにPGMに出力するmixをsourceに含んだInputのKeyを入力してください。
-'例：dim final_output_key As String = "d5ef095d-f3d9-43f4-80db-a7bafe4002d2"
+'final_output_keyにPGMに出力するmixをsourceに含んだInputのKeyを入力してください。keyは""で囲んで次のkeyを入れる場合は,で区切ってください。
+'例：dim final_output_key As String = {"ff58e63c-b799-42cd-9910-ece6cdcd8954", "98094b69-89c1-4d8c-86e7-73145f818a96", "9db82233-2966-490b-a0a9-c13c58b88212"}
 'mix_numberにmixの番号を入力してください。
 '例：dim mix_number As String = "2"
 'input_keysにInputのKeyを入力してください。keyは""で囲んで次のkeyを入れる場合は,で区切ってください。
