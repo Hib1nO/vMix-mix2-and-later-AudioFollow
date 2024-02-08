@@ -21,9 +21,9 @@
   
 8.ダウンロードしてきたファイル「mix_Audio_Auto_Follow.txt」を選択  
   
-9.15行目の`dim final_output_key As String = ""`にmixをsourceに含んだInputのKeyを入力。  
+9.15行目の`dim final_output_key As String = ｛""｝`にmixをsourceに含んだInputのKeyを入力。  
 
-  例 : `dim final_output_key As String = "d5ef095d-f3d9-43f4-80db-a7bafe4002d2"`
+  例 : `dim final_output_key As String = {"ff58e63c-b799-42cd-9910-ece6cdcd8954", "98094b69-89c1-4d8c-86e7-73145f818a96", "9db82233-2966-490b-a0a9-c13c58b88212"}`
   
 10.16行目の`dim mix_number As String = ""`にmix番号を入力  
   
