@@ -57,27 +57,27 @@ Next
 
 For e As integer = 0 To final_output_key.Length -1
    If final_output_number_1(e) = active_input Then
-      For i As Integer = 0 To input_keys.Length - 1
-         If input_numbers_1(e) = mix_active_input Then
-            input_state(e) = True
+      For f As Integer = 0 To input_keys.Length - 1
+         If input_numbers_1(f) = mix_active_input Then
+            input_state(f) = True
          End If
       Next
    End If
 Next
 
-For f As integer = 0 To input_keys.Length - 1
-   If input_state(f) = True
-      If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(f) & """]").Attributes.GetNamedItem("muted").Value = "True" Then
+For g As integer = 0 To input_keys.Length - 1
+   If input_state(g) = True
+      If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(g) & """]").Attributes.GetNamedItem("muted").Value = "True" Then
 
-         API.Function("Audioon", input_keys(f))
-         'Console.WriteLine("Audio On : " & input_keys(f))
+         API.Function("Audioon", input_keys(g))
+         'Console.WriteLine("Audio On : " & input_keys(g))
          
       End If
    Else
-      If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(f) & """]").Attributes.GetNamedItem("muted").Value = "False" Then
+      If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(g) & """]").Attributes.GetNamedItem("muted").Value = "False" Then
 
-         API.Function("AudioOff", input_keys(f))
-         'Console.WriteLine("Audio Off : " & input_keys(f))
+         API.Function("AudioOff", input_keys(g))
+         'Console.WriteLine("Audio Off : " & input_keys(g))
             
       End If
    End If
@@ -88,47 +88,47 @@ While(True)
 
    VmixXML.loadxml(API.XML)
 
-   For g As Integer = 0 To input_keys.Length-1
-      input_state(g) = False
+   For h As Integer = 0 To input_keys.Length-1
+      input_state(h) = False
    Next
 
-   For h As Integer = 0 To input_keys.Length -1
+   For i As Integer = 0 To input_keys.Length -1
 
-      input_numbers(h) = VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(h) & """]").Attributes.GetNamedItem("number").Value
+      input_numbers(i) = VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("number").Value
 
    Next
 
-   For i As Integer = 0 To final_output_key.Length -1
+   For j As Integer = 0 To final_output_key.Length -1
 
-      final_output_number(i) = VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & final_output_key(i) & """]").Attributes.GetNamedItem("number").Value
+      final_output_number(j) = VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & final_output_key(j) & """]").Attributes.GetNamedItem("number").Value
 
    Next
 
    active_input = VmixXML.selectSingleNode("/vmix/active").InnerText
    mix_active_input = VmixXML.selectSingleNode("/vmix/mix[@number=""" & mix_number & """]/active").InnerText
    
-   For j As integer = 0 To input_keys.Length
-      If input_numbers(j) = active_input Then
-         input_state(j) = True
+   For k As integer = 0 To input_keys.Length
+      If input_numbers(k) = active_input Then
+         input_state(k) = True
       End If
    Next
 
-   For k As integer = 0 To final_output_key.Length -1
-      If final_output_number(k) = active_input Then
-         For i As Integer = 0 To input_keys.Length - 1
-            If input_numbers(k) = mix_active_input Then
-               input_state(k) = True
+   For m As integer = 0 To final_output_key.Length -1
+      If final_output_number(m) = active_input Then
+         For n As Integer = 0 To input_keys.Length - 1
+            If input_numbers(n) = mix_active_input Then
+               input_state(n) = True
             End If
          Next
       End If
    Next
 
-   For m As integer = 0 To input_keys.Length - 1
-      If input_state(m) = True
-         If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(m) & """]").Attributes.GetNamedItem("muted").Value = "True" Then
+   For o As integer = 0 To input_keys.Length - 1
+      If input_state(o) = True
+         If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(o) & """]").Attributes.GetNamedItem("muted").Value = "True" Then
 
-            API.Function("Audioon", input_keys(m))
-            'Console.WriteLine("Audio On : " & input_keys(m))
+            API.Function("Audioon", input_keys(o))
+            'Console.WriteLine("Audio On : " & input_keys(o))
             
          End If
       Else
