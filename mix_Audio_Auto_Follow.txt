@@ -124,7 +124,7 @@ While(True)
    Next
 
    For m As integer = 0 To input_keys.Length - 1
-      If input_state(l) = True
+      If input_state(m) = True
          If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(m) & """]").Attributes.GetNamedItem("muted").Value = "True" Then
 
             API.Function("Audioon", input_keys(m))
