@@ -21,57 +21,67 @@ dim active_input As String = ""
 dim mix_active_input As String = ""
 dim input_state(input_keys.Length) As String
 
+dim input_numbers(input_keys.Length) As String
+dim final_output_number(final_output_key.Length) As String
+
 For i As Integer = 0 To input_keys.Length-1
    input_state(i) = False
 Next
 
-   dim input_numbers_1(input_keys.Length) As String
-   dim final_output_number_1(final_output_key.Length) As String
+dim input_numbers_1(input_keys.Length) As String
+dim final_output_number_1(final_output_key.Length) As String
 
-   VmixXML.loadxml(API.XML)
+VmixXML.loadxml(API.XML)
 
-   For i As Integer = 0 To input_keys.Length -1
+For i As Integer = 0 To input_keys.Length -1
 
-      input_numbers_1(i) = VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("number").Value
+   input_numbers_1(i) = VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("number").Value
 
-   Next
+Next
 
-   For s As Integer = 0 To final_output_key.Length -1
+For s As Integer = 0 To final_output_key.Length -1
 
-      final_output_number_1(s) = VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & final_output_key(s) & """]").Attributes.GetNamedItem("number").Value
-   
-   Next
+   final_output_number_1(s) = VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & final_output_key(s) & """]").Attributes.GetNamedItem("number").Value
 
-   active_input = VmixXML.selectSingleNode("/vmix/active").InnerText
-   mix_active_input = VmixXML.selectSingleNode("/vmix/mix[@number=""" & mix_number & """]/active").InnerText
+Next
 
-   For s As integer = 0 To final_output_key.Length -1
-      If final_output_number_1(s) = active_input Then
-         For i As Integer = 0 To input_keys.Length - 1
-            If input_numbers_1(i) = mix_active_input Then
-               input_state(i) = True
-            End If
-         Next
+active_input = VmixXML.selectSingleNode("/vmix/active").InnerText
+mix_active_input = VmixXML.selectSingleNode("/vmix/mix[@number=""" & mix_number & """]/active").InnerText
+
+For i As integer = 0 To input_keys.Length
+   If input_numbers_1(i) = active_input Then
+      input_state(i) = True
+   End If
+Next
+
+
+For s As integer = 0 To final_output_key.Length -1
+   If final_output_number_1(s) = active_input Then
+      For i As Integer = 0 To input_keys.Length - 1
+         If input_numbers_1(i) = mix_active_input Then
+            input_state(i) = True
+         End If
+      Next
+   End If
+Next
+
+For i As integer = 0 To input_keys.Length - 1
+   If input_state(i) = True
+      If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("muted").Value = "True" Then
+
+         API.Function("Audioon", input_keys(i))
+         'Console.WriteLine("Audio On : " & input_keys(i))
+         
       End If
-   Next
+   Else
+      If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("muted").Value = "False" Then
 
-   For i As integer = 0 To input_keys.Length - 1
-      If input_state(i) = True
-         If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("muted").Value = "True" Then
-
-            API.Function("Audioon", input_keys(i))
-            'Console.WriteLine("Audio On : " & input_keys(i))
+         API.Function("AudioOff", input_keys(i))
+         'Console.WriteLine("Audio Off : " & input_keys(i))
             
-         End If
-      Else
-         If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(i) & """]").Attributes.GetNamedItem("muted").Value = "False" Then
-
-            API.Function("AudioOff", input_keys(i))
-            'Console.WriteLine("Audio Off : " & input_keys(i))
-               
-         End If
       End If
-   Next
+   End If
+Next
 
 
 While(True)
@@ -79,9 +89,6 @@ While(True)
    For i As Integer = 0 To input_keys.Length-1
       input_state(i) = False
    Next
-
-   dim input_numbers(input_keys.Length) As String
-   dim final_output_number(final_output_key.Length) As String
 
    VmixXML.loadxml(API.XML)
 
@@ -100,6 +107,12 @@ While(True)
    active_input = VmixXML.selectSingleNode("/vmix/active").InnerText
    mix_active_input = VmixXML.selectSingleNode("/vmix/mix[@number=""" & mix_number & """]/active").InnerText
    
+   For i As integer = 0 To input_keys.Length
+      If input_numbers(i) = active_input Then
+         input_state(i) = True
+      End If
+   Next
+
    For s As integer = 0 To final_output_key.Length -1
       If final_output_number(s) = active_input Then
          For i As Integer = 0 To input_keys.Length - 1
