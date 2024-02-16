@@ -132,10 +132,10 @@ While(True)
             
          End If
       Else
-         If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(m) & """]").Attributes.GetNamedItem("muted").Value = "False" Then
+         If VmixXML.selectSingleNode("/vmix/inputs/input[@key=""" & input_keys(o) & """]").Attributes.GetNamedItem("muted").Value = "False" Then
 
-            API.Function("AudioOff", input_keys(m))
-            'Console.WriteLine("Audio Off : " & input_keys(m))
+            API.Function("AudioOff", input_keys(o))
+            'Console.WriteLine("Audio Off : " & input_keys(o))
                
          End If
       End If
