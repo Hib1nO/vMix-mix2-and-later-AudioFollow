@@ -1,4 +1,4 @@
-# vMix_mix2_and_later_Audiofollow
+# vMix mix2 and later Audiofollow
 
 ## 注意事項
 ・複数mix指定非対応  
